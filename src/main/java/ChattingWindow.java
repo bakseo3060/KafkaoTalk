@@ -19,7 +19,7 @@ public class ChattingWindow extends KafkaoTalk{
     public static void start() {
 
         while(true){
-            inputCommand();
+            inputCommand("");
             switch (menu) {
                 case 1:
                     break;

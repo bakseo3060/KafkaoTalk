@@ -14,7 +14,6 @@ public class ChatroomWindow extends KafkaoTalk{
     public static void start() {
 
         while(true){
-            inputCommand();
             switch (menu) {
                 case 1:
                     break;
