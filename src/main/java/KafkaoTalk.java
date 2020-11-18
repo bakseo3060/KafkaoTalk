@@ -1,8 +1,10 @@
 import java.util.Scanner;
 
 public class KafkaoTalk {
+    static int MAX_LENGTH = 32;
     static int currentWindow = 0;
     static int menu = 0;
+    static String userID;
     static Scanner sc = new Scanner(System.in);
 
     public static void printMenu(String[] contents) {
@@ -13,7 +15,7 @@ public class KafkaoTalk {
     }
     public static void inputCommand() {
         //TODO : menu 선택하여 함수 호출
-        System.out.println("kafkaotalk> ");
+        System.out.print("kafkaotalk> ");
         menu = sc.nextInt();
     }
 
