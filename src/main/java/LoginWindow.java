@@ -5,8 +5,8 @@ public class LoginWindow extends KafkaoTalk{
         //Error case : MAX_LENGTH 초과
     }
     public static void start() {
-        inputCommand();
         while(true){
+            inputCommand();
             switch (menu) {
                 case 1:
                     break;

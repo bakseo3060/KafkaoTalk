@@ -12,8 +12,9 @@ public class ChatroomWindow extends KafkaoTalk{
         //TODO : 3. Reset 선택 시 consumer offset을 가장 처음으로 이동
     }
     public static void start() {
-        inputCommand();
+
         while(true){
+            inputCommand();
             switch (menu) {
                 case 1:
                     break;
