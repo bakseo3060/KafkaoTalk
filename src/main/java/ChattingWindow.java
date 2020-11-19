@@ -11,9 +11,18 @@ public class ChattingWindow extends KafkaoTalk{
         //TODO : 2. Make 선택 시 새로운 chat room 생성
         //chatroom을 topic으로 생성한다. 해당 topic은 key, value로 구성되어 있다
         //key : userID, value : written text
-        command = "Chat room name: ";
-        inputCommand(command);
-        chatAdmin.createNewTopic(roomName);
+
+        try {
+            command = "Chat room name: ";
+            inputCommand(command);
+            if(userID.length() >= MAX_LENGTH) {
+                throw new MaxlengthException();
+            }
+            chatAdmin.createNewTopic(roomName);
+        } catch(MaxlengthException e) {
+            System.out.println(e);
+        }
+
     }
     public static void joinChatroom(String roomName) {
         //TODO : 3. Join 선택 시 roomName을 갖는 방에 참여. MAX_LENGTH = 32

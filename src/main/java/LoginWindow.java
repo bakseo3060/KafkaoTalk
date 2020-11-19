@@ -7,17 +7,17 @@ public class LoginWindow extends KafkaoTalk{
             if(userID.length() >= MAX_LENGTH) {
                 throw new MaxlengthException();
             }
-            System.out.println(userID);
+            currentWindow = 1; //TODO : ID생성 후 Chatting Window로 이동
         } catch(MaxlengthException e) {
-                e.printStackTrace();
+                System.out.println(e);
         }
+
     }
     public static void start() {
         inputCommand("");
         switch (menu) {
             case 1:
                 createID();
-                currentWindow = 1; //TODO : ID생성 후 Chatting Window로 이동
                 break;
             case 2:
                 System.exit(0);

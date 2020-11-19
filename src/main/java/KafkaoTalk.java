@@ -17,10 +17,11 @@ public class KafkaoTalk {
     static String prevArg;
 
     public static void printMenu(String[] contents) {
-        System.out.println(contents[0]);
+        System.out.println("\n"+contents[0]);
         for(int i=1; i< contents.length; i++) {
             System.out.println(i + ". "+contents[i]);
         }
+        System.out.println();
     }
     public static void inputCommand(String args) {
         //TODO : menu 선택하여 함수 호출
