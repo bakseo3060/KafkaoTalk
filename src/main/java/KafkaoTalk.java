@@ -44,7 +44,10 @@ public class KafkaoTalk {
         }
 
     }
-
+    public static void finishKafkaoTalk() {
+        System.out.println("THANK YOU FOR USING MY PROGRAM!");
+        System.exit(0);
+    }
     public static void main(String[] args) throws ExecutionException, InterruptedException {
 
         int menu = 0; //0~4, 각 클래스 마다 작동 방식 다름

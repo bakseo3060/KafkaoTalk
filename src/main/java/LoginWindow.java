@@ -20,7 +20,7 @@ public class LoginWindow extends KafkaoTalk{
                 createID();
                 break;
             case 2:
-                System.exit(0);
+                finishKafkaoTalk();
                 break;
             default:
                 break;
