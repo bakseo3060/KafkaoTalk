@@ -8,7 +8,7 @@ public class KafkaoTalk {
     static String roomName;
     static String text;
     static Scanner sc = new Scanner(System.in);
-
+    
     public static void printMenu(String[] contents) {
         System.out.println(contents[0]);
         for(int i=1; i< contents.length; i++) {

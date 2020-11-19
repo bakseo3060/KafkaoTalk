@@ -13,7 +13,7 @@ public class ChatroomWindow extends KafkaoTalk{
     }
     public static void start() {
 
-        while(true){
+        while(currentWindow == 2){
             switch (menu) {
                 case 1:
                     break;

@@ -4,7 +4,6 @@ public class LoginWindow extends KafkaoTalk{
         //TODO : 1. Login 선택 시 user ID를 콘솔에 입력받아 저장한다. MAX_LENGTH = 32
         try {
             inputCommand("ID: "); //ID 입력받기
-
             if(userID.length() >= MAX_LENGTH) {
                 throw new MaxlengthException();
             }
