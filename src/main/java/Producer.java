@@ -5,7 +5,16 @@ import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.clients.producer.ProducerRecord;
 
 public class Producer {
-    public static void main(String[] args) {
+    private KafkaProducer<String, String> producer;
+
+    public void sendToTopic(String roomName, String userID, String text) {
+        ProducerRecord<String, String> record = new ProducerRecord<>(roomName, userID, text);
+        producer.send(record);
+    }
+    public void closeChatProducer() {
+        producer.close();
+    }
+    public Producer() {
         Properties config = new Properties();
         config.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
         config.put(ProducerConfig.CLIENT_ID_CONFIG, "id1");
@@ -13,11 +22,6 @@ public class Producer {
         config.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringSerializer");
         config.put(ProducerConfig.LINGER_MS_CONFIG, 1);
 //        config.put(ProducerConfig.COMPRESSION_TYPE_CONFIG, "lz4");
-
-        KafkaProducer<String, String> producer = new KafkaProducer<>(config);
-        ProducerRecord<String, String> record = new ProducerRecord<>("test2", "11", "Sogang");
-
-        producer.send(record);
-        producer.close();
+        producer = new KafkaProducer<>(config);
     }
 }
