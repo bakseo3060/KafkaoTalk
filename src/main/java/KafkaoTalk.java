@@ -1,4 +1,9 @@
+import org.apache.kafka.clients.admin.AdminClient;
+import org.apache.kafka.clients.admin.KafkaAdminClient;
+import org.apache.kafka.clients.admin.NewTopic;
+
 import java.util.Scanner;
+import java.util.concurrent.ExecutionException;
 
 public class KafkaoTalk {
     static int MAX_LENGTH = 32;
@@ -8,7 +13,9 @@ public class KafkaoTalk {
     static String roomName;
     static String text;
     static Scanner sc = new Scanner(System.in);
-    
+    static Admin chatAdmin;
+    static String prevArg;
+
     public static void printMenu(String[] contents) {
         System.out.println(contents[0]);
         for(int i=1; i< contents.length; i++) {
@@ -17,29 +24,34 @@ public class KafkaoTalk {
     }
     public static void inputCommand(String args) {
         //TODO : menu 선택하여 함수 호출
+
         System.out.print("kafkaotalk> "+args);
         if (args.equals("")) {
             menu = sc.nextInt();
-        } else if(args.equals("ID: ")) {
-            sc.nextLine(); //버퍼 비우기
-            userID = sc.nextLine();
-        } else if(args.equals("Chat room name: ")) {
-            sc.nextLine(); //버퍼 비우기
-            roomName = sc.nextLine();
-        } else if(args.equals("Text: ")) {
-            sc.nextLine();
-            text = sc.nextLine();
+            prevArg = args;
+        } else {
+            if(prevArg.equals("")) {
+                sc.nextLine(); //버퍼 비우기
+            }
+            if(args.equals("ID: ")) {
+                userID = sc.nextLine();
+            } else if(args.equals("Chat room name: ")) {
+                roomName = sc.nextLine();
+            } else if(args.equals("Text: ")) {
+                text = sc.nextLine();
+            }
         }
 
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ExecutionException, InterruptedException {
 
         int menu = 0; //0~4, 각 클래스 마다 작동 방식 다름
         //Window 초기화
         LoginWindow login = new LoginWindow();
         ChattingWindow chatting = new ChattingWindow();
         ChatroomWindow chatroom = new ChatroomWindow();
+        chatAdmin = new Admin();
 
 
         //TODO: STDIN으로 menu 받아서 기능 선택

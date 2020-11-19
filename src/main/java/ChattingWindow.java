@@ -1,13 +1,19 @@
+import java.util.concurrent.ExecutionException;
+
 public class ChattingWindow extends KafkaoTalk{
     String[] contents = new String[] {"Chatting Window", "List", "Make", "Join", "Log out"};
-    public static void listChatroom (){
+    static String command = "";
+    public static void listChatroom () throws ExecutionException, InterruptedException {
         //TODO : 1. List 선택 시 모든 chatroom 출력
+        chatAdmin.listAllTooics();
     }
     public static void createNewChatroom() {
         //TODO : 2. Make 선택 시 새로운 chat room 생성
         //chatroom을 topic으로 생성한다. 해당 topic은 key, value로 구성되어 있다
         //key : userID, value : written text
-        //Producer를 활용한다.
+        command = "Chat room name: ";
+        inputCommand(command);
+        chatAdmin.createNewTopic(roomName);
     }
     public static void joinChatroom(String roomName) {
         //TODO : 3. Join 선택 시 roomName을 갖는 방에 참여. MAX_LENGTH = 32
@@ -20,7 +26,7 @@ public class ChattingWindow extends KafkaoTalk{
         currentWindow = 0;
     }
 
-    public static void start() {
+    public static void start() throws ExecutionException, InterruptedException {
 
         while(currentWindow == 1){
             inputCommand("");
