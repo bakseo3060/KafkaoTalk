@@ -26,4 +26,8 @@ public class Admin{
     public void listAllTooics() throws ExecutionException, InterruptedException {
         client.listTopics().names().get().forEach(System.out::println);
     }
+    public boolean checkExistTopic(String roomName) throws ExecutionException, InterruptedException {
+        boolean topicExists  = client.listTopics().names().get().contains(roomName);
+        return topicExists;
+    }
 }
