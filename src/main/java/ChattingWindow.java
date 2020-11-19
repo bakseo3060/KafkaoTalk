@@ -36,6 +36,8 @@ public class ChattingWindow extends KafkaoTalk{
             }
             if(chatAdmin.checkExistTopic(roomName)) {
                 currentWindow = 2;
+                //roomName을 Consumer에서 subscribe
+                chatConsumer.subscribeChatroom(roomName);
             } else {
                 currentWindow = 1;
                 throw new ExistRoomException();

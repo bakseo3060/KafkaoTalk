@@ -1,6 +1,8 @@
 import org.apache.kafka.clients.admin.AdminClient;
 import org.apache.kafka.clients.admin.KafkaAdminClient;
 import org.apache.kafka.clients.admin.NewTopic;
+import org.apache.kafka.clients.consumer.KafkaConsumer;
+import org.apache.kafka.clients.producer.KafkaProducer;
 
 import java.util.Scanner;
 import java.util.concurrent.ExecutionException;
@@ -14,6 +16,9 @@ public class KafkaoTalk {
     static String text;
     static Scanner sc = new Scanner(System.in);
     static Admin chatAdmin;
+    static Consumer chatConsumer;
+    static Producer chatProducer;
+
     static String prevArg;
 
     public static void printMenu(String[] contents) {
@@ -47,6 +52,8 @@ public class KafkaoTalk {
     public static void finishKafkaoTalk() {
         System.out.println("THANK YOU FOR USING MY PROGRAM!");
         System.exit(0);
+        chatConsumer.closeChatConsumer();
+        chatProducer.closeChatProducer();
     }
     public static void main(String[] args) throws ExecutionException, InterruptedException {
 
@@ -56,7 +63,8 @@ public class KafkaoTalk {
         ChattingWindow chatting = new ChattingWindow();
         ChatroomWindow chatroom = new ChatroomWindow();
         chatAdmin = new Admin();
-
+        chatConsumer = new Consumer();
+        chatProducer = new Producer();
 
         //TODO: STDIN으로 menu 받아서 기능 선택
         while(true) {
