@@ -1,11 +1,9 @@
-import org.apache.kafka.clients.admin.AdminClient;
-import org.apache.kafka.clients.admin.AdminClientConfig;
-import org.apache.kafka.clients.admin.KafkaAdminClient;
-import org.apache.kafka.clients.admin.NewTopic;
-import org.apache.kafka.clients.consumer.ConsumerConfig;
+import org.apache.kafka.clients.admin.*;
 
 import java.util.Collections;
+import java.util.List;
 import java.util.Properties;
+import java.util.Set;
 import java.util.concurrent.ExecutionException;
 public class Admin{
 
@@ -23,11 +21,18 @@ public class Admin{
         client.createTopics(Collections.singleton(topic)).values().get(topic);
 //        client.createTopics(Collections.singleton(topic)).values().get(topic);
     }
-    public void listAllTooics() throws ExecutionException, InterruptedException {
-        client.listTopics().names().get().forEach(System.out::println);
+    public Set<String> listAllTopics() throws ExecutionException, InterruptedException {
+        return client.listTopics().names().get();
     }
     public boolean checkExistTopic(String roomName) throws ExecutionException, InterruptedException {
         boolean topicExists  = client.listTopics().names().get().contains(roomName);
         return topicExists;
+    }
+    public void deleteKafkaTopics(Set<String> kafkaTopics) {
+
+        DeleteTopicsResult deleteTopicsResult = client.deleteTopics(kafkaTopics);
+
+        while (!deleteTopicsResult.all().isDone()) {
+        }
     }
 }

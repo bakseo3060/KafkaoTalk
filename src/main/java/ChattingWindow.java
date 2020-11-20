@@ -6,7 +6,7 @@ public class ChattingWindow extends KafkaoTalk{
 
     public static void listChatroom () throws ExecutionException, InterruptedException {
         //TODO : 1. List 선택 시 모든 chatroom 출력
-        chatAdmin.listAllTooics();
+        chatAdmin.listAllTopics().forEach(System.out::println);;
     }
     public static void createNewChatroom() {
         //TODO : 2. Make 선택 시 새로운 chat room 생성
