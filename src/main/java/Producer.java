@@ -14,10 +14,10 @@ public class Producer {
     public void closeChatProducer() {
         producer.close();
     }
-    public Producer() {
+    public Producer(String userID) {
         Properties config = new Properties();
         config.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
-        config.put(ProducerConfig.CLIENT_ID_CONFIG, "id1");
+        config.put(ProducerConfig.CLIENT_ID_CONFIG, userID);
         config.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringSerializer");
         config.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringSerializer");
         config.put(ProducerConfig.LINGER_MS_CONFIG, 1);

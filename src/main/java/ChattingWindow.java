@@ -5,13 +5,16 @@ public class ChattingWindow extends KafkaoTalk{
     static String command = "";
 
     public static void listChatroom () throws ExecutionException, InterruptedException {
-        //TODO : 1. List 선택 시 모든 chatroom 출력
-        chatAdmin.listAllTopics().forEach(System.out::println);;
+        //TODO : 1. List 선택 시 현재 계정이 생성한 모든 chatroom 출력
+//        chatAdmin.listAllTopics().forEach(System.out::println);
+        chatConsumer.listConsumerTopics();
     }
     public static void createNewChatroom() {
         //TODO : 2. Make 선택 시 새로운 chat room 생성
         //1. roomName을 콘솔로부터 입력받는다.
         //2. roomName을 이름으로 갖는 topic을 생성한다.
+        //3. 방을 생성한다는 것은 현재 컨슈머가 그 방(topic)을 구독한다는 것으로 본다.
+
         try {
             command = "Chat room name: ";
             inputCommand(command);
@@ -19,6 +22,9 @@ public class ChattingWindow extends KafkaoTalk{
                 throw new MaxlengthException();
             }
             chatAdmin.createNewTopic(roomName);
+            System.out.println("\""+roomName+"\""+" is created!");
+            chatProducer.sendToTopic(userID+"_chatroomInfo", roomName,"");
+
         } catch(MaxlengthException e) {
             System.out.println(e);
         }
@@ -51,6 +57,7 @@ public class ChattingWindow extends KafkaoTalk{
     }
     public static void logOut() {
         //TODO : 4. Logout 선택 시 Login Window로 이동
+        chatConsumer.closeChatConsumer();
         currentWindow = 0;
     }
 
