@@ -1,4 +1,4 @@
-#Welcome to my KafkaoTalk!
+#Welcome to my KafkaoTalk!#
 ##This is text-based chatting program with kafka and java
 ####1. move to your kafka folder
 cd kafka_2.13-2.6.0 
