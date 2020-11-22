@@ -4,7 +4,6 @@ public class ChatroomWindow extends KafkaoTalk{
     public static void readMsg() {
         //TODO : 1. Read 선택 시 topic으로부터 메시지 읽고 콘솔에 출력
         chatConsumer.getTextFromTopic();
-
     }
     public static void writeMsg() {
         //TODO : 2. Write 선택 시 chat room에 메시지 작성

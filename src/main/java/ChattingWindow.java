@@ -22,11 +22,23 @@ public class ChattingWindow extends KafkaoTalk{
                 throw new MaxlengthException();
             }
             chatAdmin.createNewTopic(roomName);
-            System.out.println("\""+roomName+"\""+" is created!");
-            chatProducer.sendToTopic(userID+"_chatroomInfo", roomName,"");
 
+            //TODO : userID가 생성하려는 roomName의 중복 여부를 체크 후 topic에 추가
+            if(chatConsumer.checkExistRecord(roomName) == false){
+                chatProducer.sendToTopic(userID+"_chatroomInfo", roomName,"");
+                if(chatAdmin.checkExistTopic(roomName) == false) {//다른 유저가 생성하지 않은 신규 채팅방인 경우 생성 메시지 출력
+                    System.out.println("\"" + roomName + "\"" + " is created!");
+                }
+            }
+            else {
+                System.out.println("\""+roomName+"\""+" already exist!");
+            }
         } catch(MaxlengthException e) {
             System.out.println(e);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
         }
 
     }
