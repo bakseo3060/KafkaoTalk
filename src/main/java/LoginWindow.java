@@ -1,15 +1,13 @@
-import org.apache.kafka.clients.admin.AdminClient;
-
 import java.util.Collections;
 import java.util.concurrent.ExecutionException;
 
 public class LoginWindow extends KafkaoTalk{
     String[] contents = new String[] {"Welcome to KafkaoTalk", "Log in", "Exit", "Delete All Chat Room"};
-    public static boolean checkExistID(String userID) throws ExecutionException, InterruptedException {
-        //TODO : 새로 입력받은 userID가 존재하는지 파
-        return chatAdmin.checkExistConsumerID("group_1", userID);
-    }
-    public static void loginID() throws ExecutionException, InterruptedException {
+//    public static boolean checkExistID(String userID) throws ExecutionException, InterruptedException {
+//        //TODO : 새로 입력받은 userID가 존재하는지 파
+//        return chatAdmin.checkExistConsumerID("group_1", userID);
+//    }
+    public static void loginID(){
 
         //새로운 userID를 clientID로 갖는 consumer 생성.
         chatConsumer = new Consumer(userID);
@@ -26,14 +24,14 @@ public class LoginWindow extends KafkaoTalk{
             }
             //userID clientID로 갖는 consumer 생성.
 
-            currentWindow = 1; //TODO : ID생성 후 Chatting Window로 이동
+            currentWindow = 1; //TODO : ID 생성 후 Chatting Window 로 이동
         } catch(MaxlengthException e) {
                 System.out.println(e);
         }
 
     }
     public static void deleteAllChatRoom() throws ExecutionException, InterruptedException {
-        //TOOD : 현재 생성되어있는 채팅방 모두 삭제
+        //TODO : 현재 생성되어있는 채팅방 모두 삭제
         chatAdmin.deleteKafkaTopics(chatAdmin.listAllTopics());
     }
     public static void start() throws ExecutionException, InterruptedException {

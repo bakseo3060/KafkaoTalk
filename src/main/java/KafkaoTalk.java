@@ -1,10 +1,3 @@
-import org.apache.kafka.clients.admin.AdminClient;
-import org.apache.kafka.clients.admin.KafkaAdminClient;
-import org.apache.kafka.clients.admin.NewTopic;
-import org.apache.kafka.clients.consumer.KafkaConsumer;
-import org.apache.kafka.clients.producer.KafkaProducer;
-
-import java.util.HashMap;
 import java.util.Scanner;
 import java.util.concurrent.ExecutionException;
 
@@ -20,7 +13,7 @@ public class KafkaoTalk {
     static Consumer chatConsumer;
     static Producer chatProducer;
     static String prevArg;
-    static HashMap<String, Consumer> consumerHashMap;
+
     public static void printMenu(String[] contents) {
         System.out.println("\n"+contents[0]);
         for(int i=1; i< contents.length; i++) {
@@ -58,7 +51,6 @@ public class KafkaoTalk {
     }
     public static void main(String[] args) throws ExecutionException, InterruptedException {
 
-        int menu = 0; //0~4, 각 클래스 마다 작동 방식 다름
         //Window 초기화
         LoginWindow login = new LoginWindow();
         ChattingWindow chatting = new ChattingWindow();

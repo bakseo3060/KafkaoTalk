@@ -21,7 +21,6 @@ public class ChattingWindow extends KafkaoTalk{
             if(roomName.length() >= MAX_LENGTH) {
                 throw new MaxlengthException();
             }
-            chatAdmin.createNewTopic(roomName);
 
             //TODO : userID가 생성하려는 roomName의 중복 여부를 체크 후 topic에 추가
             if(chatConsumer.checkExistRecord(roomName) == false){
@@ -29,6 +28,7 @@ public class ChattingWindow extends KafkaoTalk{
                 if(chatAdmin.checkExistTopic(roomName) == false) {//다른 유저가 생성하지 않은 신규 채팅방인 경우 생성 메시지 출력
                     System.out.println("\"" + roomName + "\"" + " is created!");
                 }
+                chatAdmin.createNewTopic(roomName);
             }
             else {
                 System.out.println("\""+roomName+"\""+" already exist!");
