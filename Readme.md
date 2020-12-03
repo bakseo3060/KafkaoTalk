@@ -1,5 +1,6 @@
 ## Welcome to my KafkaoTalk!
-## This is text-based chatting program with kafka and java
+# This is text-based chatting program with kafka and java
+# It was a project that could implement the logic of the chat service in an object-oriented way. In addition, by linking with Kafka, I was able to think about how accounts, chat rooms, and chat messages needed for chat services in the Kafaka ecosystem should be connected organically. The project itself was a simple implementation, but it was a great experience to fully ponder the issues that arise when users use the chat service.
 #### 1. move to your kafka folder
     cd kafka_2.13-2.6.0 
 #### 2. Activate Kafka server and Zookeeper
